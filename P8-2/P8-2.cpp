@@ -3,10 +3,9 @@
 
 using namespace std;
 
-int countWords(string str) {
+int countWords(const string& str) {
     int wordCount = 0;
     bool inWord = false;
-
     for (char character : str) {
         if (character == ' ') {
             inWord = false;
@@ -18,18 +17,26 @@ int countWords(string str) {
             }
         }
     }
-
     return wordCount;
 }
 
-int main(void) {
-    string testStr1 = "Wazzzzzzup brah";
-    string testStr2 = "I'm testing to see if dis shat works";
-    string testStr3 = "Does it??? lets find out brah";
-
-    cout << "Number of words in '" << testStr1 << "': " << countWords(testStr1) << endl;
-    cout << "Number of words in '" << testStr2 << "': " << countWords(testStr2) << endl;
-    cout << "Number of words in '" << testStr3 << "': " << countWords(testStr3) << endl;
-
+int main() {
+    string input;
+    while (true) {
+        cout << "Enter a string or Q to quit: ";
+        input = "";
+        char ch;
+        while (true) {
+            ch = getchar();
+            if (ch == '\n') {
+                break;
+            }
+            input = input + ch;
+        }
+        if (input == "Q" || input == "q") {
+            break;
+        }
+        cout << "Word count: " << countWords(input) << endl;
+    }
     return 0;
 }
